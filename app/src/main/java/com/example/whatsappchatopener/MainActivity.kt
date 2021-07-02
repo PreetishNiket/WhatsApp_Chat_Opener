@@ -12,40 +12,43 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        var number:String="0"
+        //String variable number
+        var number="0"
+
         if(intent.action==Intent.ACTION_PROCESS_TEXT){
           number = intent.getCharSequenceExtra(Intent.EXTRA_PROCESS_TEXT).toString()
         }
         if (number.isDigitsOnly())
         {
+            //If number selected is valid open WhatsApp using the function
             openWhatsapp(number)
         }
         else{
+            // Toast Message That the number Selected is invalid
             Toast.makeText(this,"Invalid Number",Toast.LENGTH_SHORT).show()
         }
 
     }
-
+        //function to intent to WhatsApp
     private fun openWhatsapp(number: String) {
         val i=Intent(Intent.ACTION_VIEW)
         i.setPackage("com.whatsapp")
-       val data:String = if(number[0]== '+')
-                        {
-                             number.substring(1)
-                        }
-                        else if(number.length==10)
-                        {
-                            "91"+number
-                        }
-                        else if (number[5]== ' ')
-                        {
-                            number
-                        }
-                        else{
-                                number
-                        }
-
-            i.data= Uri.parse("http://wa.me/$data")
+       val data:String = when {
+           number[0]== '+' -> {
+               number.substring(1)
+           }
+           number.length==10 -> {
+               //it is according to India ,Change it any country code
+               "91$number"
+           }
+           number[5]== ' ' -> {
+               number
+           }
+           else -> {
+               number
+           }
+       }
+              i.data= Uri.parse("http://wa.me/$data")
         if(packageManager.resolveActivity(i,0)!=null)
         {
             startActivity(i)
