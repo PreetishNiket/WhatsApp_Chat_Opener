@@ -1,6 +1,6 @@
 # WhatsApp_Chat_Opener
-
 Whatsapp hack,
+Please Star🌟 the Repo to show support
 
 For a WhatsApp user In Android, there's the issue :-
 <br>
@@ -26,4 +26,3 @@ This repository is maintained by :-
 <br>   
 
 <h3><a href="https://github.com/PreetishNiket"><b>Preetish Niket</b></a></h3>
-Please Star🌟 the Repo to show support
